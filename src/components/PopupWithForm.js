@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
-function PopupWithForm({title}) {
+function PopupWithForm({title, name, isOpen, onClose}) {
+
     return (
-        <div className="popup-blackout">
-        <div className="popup-overlay"></div>
-          <form className="popup">
-            <button type="button" className="popup__btn-close"></button>
-            <h2 className="popup__title">{title}</h2>
-            <div className="popup__text-form">
+        <div className={isOpen ? `popup-blackout popup_opened` : `popup-blackout`}>
+          <form name={name} className='popup'>
+            <button className='popup__btn-close' onClick={onClose}></button>
+            <h2 className='popup__title'>{title}</h2>
+            <div className='popup__text-form'>
             </div>
-            <button type="submit" className="popup__btn-save">Сохранить</button>
+            <button className='popup__btn-save'>Сохранить</button>
           </form>
       </div>
     );

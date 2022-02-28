@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-function PopupWithForm({title, name, isOpen, onClose}) {
+function PopupWithForm({title, name, nameButton, isOpen, onClose, children}) {
 
     return (
         <div className={isOpen ? `popup-blackout popup_opened` : `popup-blackout`}>
@@ -8,8 +8,9 @@ function PopupWithForm({title, name, isOpen, onClose}) {
             <button className='popup__btn-close' onClick={onClose}></button>
             <h2 className='popup__title'>{title}</h2>
             <div className='popup__text-form'>
+              {children}
             </div>
-            <button className='popup__btn-save'>Сохранить</button>
+            <button className='popup__btn-save'>{nameButton}</button>
           </form>
       </div>
     );

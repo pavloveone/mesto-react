@@ -3,21 +3,13 @@ import profileAvatar from '../images/profile__avatar.jpg';
 import api from '../utils/Api';
 import Card from './Card';
 
-function Main({ onAvatarClick, onProfileClick, onAddPlace }) {
+function Main({ onAvatarClick, onProfileClick, onAddPlace, onCardClick }) {
   const [userName, setUserName] = useState('');
   const [userDescription, setUserDescription] = useState('');
   const [userAvatar, setUserAvatar] = useState(profileAvatar);
   const [cards, setCards] = useState([]);
 
-  const elements = () => {
-    if (cards.length > 0) {
-      return cards.map((card) => {
-        <Card card={card} key={`card${card._id}`} />
-      });
-    }
-  };
-
-  useEffect(() => {
+  useEffect(() => { 
     api.getInitialCards()
     .then((res) => {
       setCards(res);
@@ -49,11 +41,12 @@ function Main({ onAvatarClick, onProfileClick, onAddPlace }) {
         </section>
   
           <ul className='elements'>
-            {elements()}
+            {cards.map((card) => (
+              <Card key={`card${card._id}`} card={card} onCardClick={onCardClick} />))
+            }
           </ul>
   
         </main>
     );
-};
-
+}
 export default Main;

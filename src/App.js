@@ -6,20 +6,24 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 
 import PopupWithForm from './components/PopupWithForm';
+import ImagePopup from './components/ImagePopup';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(false);
 
   const handleAvatarClick = () => setIsEditAvatarPopupOpen(true);
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
   const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true);
+  const handleCardClick = (card) => setSelectedCard(card);
 
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setSelectedCard(false);
   };
   return (
     <>
@@ -28,8 +32,13 @@ function App() {
       onAvatarClick={handleAvatarClick}
       onProfileClick={handleEditProfileClick}
       onAddPlace={handleAddPlaceClick}
+      onCardClick={handleCardClick}
       />
       <Footer />
+      <ImagePopup
+      onClose={closeAllPopups}
+      card={selectedCard}
+      />
       <PopupWithForm
       title='Редактировать профиль'
       isOpen={isEditProfilePopupOpen}

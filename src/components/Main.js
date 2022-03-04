@@ -26,27 +26,33 @@ function Main({ onAvatarClick, onProfileClick, onAddPlace, onCardClick }) {
     })
     .catch((error) => console.log(error));
   }, []);
-    return (
-        <main className='content'>
-        <section className='profile'>
-          <img src={profileAvatar} className='profile__avatar' alt='Аватарка' onClick={onAvatarClick}
-          style={{ backgroundImage: `url(${userAvatar})` }}
-          />
-          <div className='profile__info'>
-            <h1 className='profile__info-title'>{userName}</h1>
-            <p className='profile__info-subtitle'>{userDescription}</p>
-          </div>
-          <button className='profile__edit-button' onClick={onProfileClick}></button>
-          <button className='profile__add-button' onClick={onAddPlace}></button>
-        </section>
+
+  Promise.all([api.getInitialCards(), api.getProfileInfo()])
+    .then((values) => {
+      return values
+    }) 
+    .catch(err => {console.log(`data load error: ${err}`)});
+
+  return (
+    <main className='content'>
+      <section className='profile'>
+        <img src={profileAvatar} className='profile__avatar' alt='Аватарка' onClick={onAvatarClick}
+        />
+        <div className='profile__info'>
+          <h1 className='profile__info-title'>{userName}</h1>
+          <p className='profile__info-subtitle'>{userDescription}</p>
+        </div>
+        <button className='profile__edit-button' onClick={onProfileClick}></button>
+        <button className='profile__add-button' onClick={onAddPlace}></button>
+      </section>
   
-          <ul className='elements'>
-            {cards.map((card) => (
-              <Card key={`card${card._id}`} card={card} onCardClick={onCardClick} />))
-            }
-          </ul>
+      <ul className='elements'>
+        {cards.map((card) => (
+          <Card key={`card${card._id}`} card={card} onCardClick={onCardClick} />))
+        }
+      </ul>
   
-        </main>
-    );
+    </main>
+  );
 }
 export default Main;

@@ -91,6 +91,14 @@ class Api {
         })
     .then(this._handleResponse)  
     }
+
+    getAppData() {
+        return Promise.all([
+            this.getInitialCards(),
+            this.getProfileInfo()
+        ])
+    .then(this._handleResponse);
+    }
 }
 
 const api = new Api({

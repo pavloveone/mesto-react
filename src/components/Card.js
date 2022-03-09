@@ -12,6 +12,7 @@ function Card({card, onCardClick}) {
         alt={card.name}
         src={card.link}
         onClick={handleCardClick}
+        height = '280px'
       />
       <div className="element__container">
         <h3 className="element__container-title">{card.name}</h3>

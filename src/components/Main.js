@@ -10,16 +10,9 @@ function Main({ onAvatarClick, onProfileClick, onAddPlace, onCardClick }) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => { 
-    api.getInitialCards()
+    api.getAppData()
     .then((res) => {
       setCards(res);
-    })
-    .catch((error) => console.log(error));
-  }, []);
-
-  useEffect(() => {
-    api.getProfileInfo()
-    .then((res) => {
       setUserName(res.name);
       setUserDescription(res.about);
       setUserAvatar(res.avatar);
@@ -27,16 +20,10 @@ function Main({ onAvatarClick, onProfileClick, onAddPlace, onCardClick }) {
     .catch((error) => console.log(error));
   }, []);
 
-  Promise.all([api.getInitialCards(), api.getProfileInfo()])
-    .then((values) => {
-      return values
-    }) 
-    .catch(err => {console.log(`data load error: ${err}`)});
-
   return (
     <main className='content'>
       <section className='profile'>
-        <img src={profileAvatar} className='profile__avatar' alt='Аватарка' onClick={onAvatarClick}
+        <img src={userAvatar} className='profile__avatar' alt='Аватарка' onClick={onAvatarClick}
         />
         <div className='profile__info'>
           <h1 className='profile__info-title'>{userName}</h1>

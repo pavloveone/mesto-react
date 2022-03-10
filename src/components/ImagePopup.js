@@ -6,8 +6,8 @@ function ImagePopup({ card, onClose }) {
       <div className='popup-overlay'></div>      
         <figure className='popup popup-image'>
           <button className='popup__btn-close' onClick={onClose}></button>
-          <img className='popup-image__figure' src={card.link} alt={card.name} />
-          <p className='popup-image__caption'>{card.name}</p>
+          <img className='popup-image__figure' src={card ? card.link : ''} alt={card ? card.name : ''} />
+          <p className='popup-image__caption'>{card ? card.name : ''}</p>
         </figure>
     </div>
   );

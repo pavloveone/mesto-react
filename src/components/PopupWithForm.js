@@ -4,7 +4,7 @@ function PopupWithForm({title, name, nameButton, isOpen, onClose, children, onSu
 
   return (
     <div className={isOpen ? `popup-blackout popup_opened` : `popup-blackout`}>
-      <form name={name} className='popup'>
+      <form name={name} className='popup' onSubmit={onSubmit}>
         <button className='popup__btn-close' onClick={onClose}></button>
         <h2 className='popup__title'>{title}</h2>
         <div className='popup__text-form'>

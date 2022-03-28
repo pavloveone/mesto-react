@@ -32,13 +32,15 @@ function App() {
   };
 
   useEffect(() => { 
-    api.getProfileInfo()
+    api
+    .getProfileInfo()
     .then((user) => {
       setCurrentUser(user);
     })
     .catch((error) => console.log(error));
 
-    api.getInitialCards()
+    api
+    .getInitialCards()
     .then((res) => {
       setCards(res)
     })
@@ -54,7 +56,8 @@ function App() {
     .changeLikeCardStatus(card._id, isLiked)
     .then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    });
+    })
+    .catch(error => console.log(error));
   };
 
   function handleCardDelete(card) {
@@ -66,8 +69,8 @@ function App() {
     .delCard(card._id, !isOwn)
     .then(() => {
         setCards((state) => state.filter((c) => c._id != card._id ));
-
-    });
+    })
+    .catch(error => console.log(error));
   }
   const handleUpdateUser = (user) => {
     api
@@ -101,8 +104,7 @@ function App() {
   }
 
   return (
-    <>
-    < CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={currentUser}>
       <Header />
       <Main
         onEditAvatar={handleAvatarClick}
@@ -133,8 +135,7 @@ function App() {
         onClose={closeAllPopups}
         onAddPlace={handleAddPlaceSubmit}
       />
-      </CurrentUserContext.Provider>
-    </>
+    </CurrentUserContext.Provider>
   );
 }
 

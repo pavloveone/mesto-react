@@ -25,7 +25,7 @@ export function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
          
         // Передаём значения управляемых компонентов во внешний обработчик
         onAddPlace({
-            name: nameCard,
+            place: nameCard,
             link,
         });
            
@@ -33,50 +33,50 @@ export function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
 
     return (
         <PopupWithForm
-        title='Новое место'
-        isOpen={isOpen}
-        onClose={onClose}
-        onSubmit={handleSubmit}
-        name='add_place'
-        nameButton='Создать'
-        children={
-          <>
-            <input 
-              className='popup__input'
-              name='place'
-              type='text'
-              value={nameCard || ''}
-              onChange={handleChange}
-              placeholder='Название места' 
-              minLength='2'
-              maxLength='30'
-              id='place-card'
-              required
-            />
-            <span 
-              className='error' 
-              id='place-card-error'
-            >
-            </span>
-            <input 
-              className='popup__input'
-              name='link'
-              type='url'
-              value={link || ''}
-              onChange={handleChangeLink}
-              placeholder='Ссылка на картинку' 
-              minLength='2'
-              maxLength='200' 
-              id='link-card'
-              required
-            />
-            <span 
-              className='error' 
-              id='link-card-error'
-            >
-            </span>
-          </>
-        }
+            title='Новое место'
+            isOpen={isOpen}
+            onClose={onClose}
+            onSubmit={handleSubmit}
+            name='add_place'
+            nameButton='Создать'
+            children={
+                <>
+                    <input 
+                        className='popup__input'
+                        name='place'
+                        type='text'
+                        value={nameCard || ''}
+                        onChange={handleChange}
+                        placeholder='Название места' 
+                        minLength='2'
+                        maxLength='30'
+                        id='place-card'
+                        required
+                    />
+                    <span 
+                        className='error' 
+                        id='place-card-error'
+                    >
+                    </span>
+                    <input 
+                        className='popup__input'
+                        name='link'
+                        type='url'
+                        value={link || ''}
+                        onChange={handleChangeLink}
+                        placeholder='Ссылка на картинку' 
+                        minLength='2'
+                        maxLength='200' 
+                        id='link-card'
+                        required
+                    />
+                    <span 
+                        className='error' 
+                        id='link-card-error'
+                    >
+                    </span>
+                </>
+            }
       />
     );
 }

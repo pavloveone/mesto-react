@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PopupWithForm({title, name, nameButton, isOpen, onClose, children}) {
+function PopupWithForm({title, name, nameButton, isOpen, onClose, children, onSubmit}) {
 
   return (
     <div className={isOpen ? `popup-blackout popup_opened` : `popup-blackout`}>
